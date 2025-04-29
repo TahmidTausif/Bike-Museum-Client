@@ -1,6 +1,4 @@
-Sure! Here's a clean and simple `README.md` you can use for your **Bike Museum** project:
 
----
 
 # 🚴 Bike Museum
 
@@ -32,8 +30,8 @@ To log in as an admin, use the credentials below:
 
 ## 💻 Source Code
 
-- **Client Repo**: [GitHub - Bike Museum Client](https://github.com/aristoxcel/Bike-Museum)
-- **Server Repo**: [GitHub - Bike Museum Server](https://github.com/habibb2r/Bike-Museum-Server)
+- **Client Repo**: [GitHub - Bike Museum Client](https://github.com/TahmidTausif/Bike-Museum-Client)
+- **Server Repo**: [GitHub - Bike Museum Server](https://github.com/TahmidTausif/Bike-Museum-Server)
 
 ---
 
