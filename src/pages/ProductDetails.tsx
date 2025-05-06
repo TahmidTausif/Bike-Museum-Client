@@ -47,24 +47,24 @@ const ProductDetails = () => {
   return (
     <div className="container mx-auto py-10 px-10 lg:px-32">
       <h1 className="text-5xl font-bold text-white text-center my-10">Product Details</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 border border-white/20 shadow-white/30 rounded-4xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 border border-white/20 shadow-white/30 rounded-xl">
         <div className="w-full max-h-fit">
           <img
             src={product?.photo || "https://via.placeholder.com/300"}
             alt={product?.name}
-            className="w-full rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl h-full object-cover"
+            className="w-full rounded-t-3xl lg:rounded-t-none lg:rounded-l-xl h-full object-cover"
           />
         </div>
         <div className="px-8 py-8">
           <h1 className="text-3xl md:text-5xl text-white font-bold">{product?.name}</h1>
           <p className="mt-2 text-amber-50">{product?.description}</p>
-          <p className="mt-6 text-4xl font-semibold text-red-400">${product?.price}</p>
-          <p className="mt-2 mb-4 text-amber-200 text-lg">{stockStatus}</p>
+          <p className="mt-6 text-4xl font-semibold text-pink-400">${product?.price}</p>
+          <p className="mt-2 mb-4 text-gray-200 text-lg">{stockStatus}</p>
 
           <div className="flex mt-8 md:mt-0 justify-between">
             <Link
               to={`/products/orderForm/${product._id}`}
-              className="mt-4 px-10 py-4 border-4 text-2xl border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-extrabold transition-colors duration-300"
+              className="mt-4 px-10 py-4 text-white text-2xl rounded-xl shadow-xl border border-white/20 backdrop-blur-md bg-white/5 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:bg-white/20  transition-colors duration-300"
             >
               Buy Now
             </Link>
@@ -77,9 +77,9 @@ const ProductDetails = () => {
         <h2 className="text-2xl font-bold text-white mb-4">Product Specifications</h2>
         <table className="min-w-full table-auto">
           <thead>
-            <tr className="border-b">
-              <th className="text-left py-2 px-4">Attribute</th>
-              <th className="text-left py-2 px-4">Details</th>
+            <tr className="border-b border-white/30">
+              <th className="text-left text-white py-2 px-4">Attribute</th>
+              <th className="text-left text-white py-2 px-4">Details</th>
             </tr>
           </thead>
           <tbody>
