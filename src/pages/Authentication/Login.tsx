@@ -74,10 +74,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1B1B31] via-[#2B1E36] to-[#1B1B31] px-4">
-      <div className="max-w-md w-full text-white rounded-lg shadow-lg p-8 md:p-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-950 to-violet-900 px-4">
+      <div className="max-w-md w-full text-white backdrop-blur-md bg-white/10 rounded-xl shadow-xl border border-white/20 p-8 md:p-12">
         <h1 className="text-3xl font-bold text-center mb-6">Welcome Back</h1>
-        <p className="text-center text-gray-400 mb-8">
+        <p className="text-center text-gray-200 mb-8">
           Log in to continue exploring our vast collection of books!
         </p>
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -96,14 +96,14 @@ const Login = () => {
                 })}
                 type="email"
                 placeholder="Enter your email..."
-                className={`w-full px-4 py-2 text-white rounded-lg border ${
+                className={`w-full px-4 py-2 text-white rounded-lg border border-white/20 ${
                   errors.email
-                    ? "border-orange-500 focus:ring-orange-500"
+                    ? "border-purple-600 focus:ring-purple-600"
                     : "border-gray-700 focus:ring-gray-500"
-                } focus:outline-gray-500 focus:ring-2`}
+                } focus:outline-purple-600 focus:ring-2`}
               />
               {typeof errors.email?.message === "string" && (
-                <p className="text-orange-500 text-sm mt-1">
+                <p className="text-pink-400 text-sm mt-1">
                   {errors.email.message}
                 </p>
               )}
@@ -119,11 +119,11 @@ const Login = () => {
                   })}
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password..."
-                  className={`w-full px-4 py-2 text-white rounded-lg border ${
+                  className={`w-full px-4 py-2 text-white rounded-lg border border-white/20 ${
                     errors.password
-                      ? "border-orange-500 focus:ring-orange-500"
+                      ? "border-purple-600 focus:ring-purple-600"
                       : "border-gray-700 focus:ring-gray-500"
-                  } focus:outline-none focus:ring-2`}
+                  } focus:outline-purple-600 focus:ring-2`}
                 />
                 <button
                   type="button"
@@ -138,7 +138,7 @@ const Login = () => {
                 </button>
               </div>
               {typeof errors.password?.message === "string" && (
-                <p className="text-orange-500 text-sm mt-1">
+                <p className="text-pink-400 text-sm mt-1">
                   {errors.password.message}
                 </p>
               )}
@@ -153,7 +153,7 @@ const Login = () => {
         </form>
         <p className="text-center text-gray-400 mt-6">
           New Here?{" "}
-          <Link to={"/register"} className="text-orange-500 hover:underline">
+          <Link to={"/register"} className="text-pink-400 hover:underline">
             Register
           </Link>
         </p>

@@ -4,7 +4,7 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { persistor, store } from './redux/store';
-import { router } from './Routes/router_TEMP'
+import { router } from './Routes/router'
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from 'sonner'
 
