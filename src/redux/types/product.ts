@@ -12,6 +12,10 @@ export type TProduct = {
   isDeleted: boolean;
   createdAt?: Date; 
   updatedAt?: Date;
+  cc?: number;  
+  weight?: number;  
+  topSpeed?: number;  
+  batteryCapacity?: number; 
 };
 
 export type TProductResponse = {

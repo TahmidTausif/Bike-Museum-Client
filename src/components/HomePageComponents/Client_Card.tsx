@@ -1,3 +1,4 @@
+import { FaQuoteLeft } from "react-icons/fa";
 
 
 interface ClientCardProps {
@@ -8,29 +9,38 @@ interface ClientCardProps {
 
 const Client_Card: React.FC<ClientCardProps> = ({ img, comment, name }) => {
   return (
-    <div className="mt-20 mb-8">
-      <div className="relative mx-auto bg-orange-50 shadow-sm shadow-primary rounded-lg max-w-sm border-2 border-primary">
+    <div className="mt-20 mb-8 h-full">
+      <div className="relative mx-auto backdrop-blur-md bg-white/10 rounded-xl shadow-xl border border-white/20 px-6 pt-16 pb-8 h-full flex flex-col justify-between">
+        {/* Quote Icon */}
+        <div className="absolute top-5 left-5 text-primary text-5xl opacity-40">
+          <FaQuoteLeft className="text-white" />
+        </div>
+
         {/* Profile Image */}
-        <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 rounded-full z-50 overflow-hidden shadow-lg w-32 h-32">
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 rounded-full z-20 overflow-hidden shadow-lg w-20 h-20 border-2 border-white/30 bg-white/20">
           <img
-            className="object-cover z-40 w-full h-full"
+            className="object-cover w-full h-full"
             src={img}
-            alt="Profile Image"
+            alt="Client Image"
           />
         </div>
+
         {/* Card Content */}
-        <div className="pt-24 pb-8">
-          <p className="font-roboto text-accent max-w-md text-center mx-auto px-4">
+        <div className="mt-6 text-center flex flex-col flex-grow justify-between">
+          {/* Set fixed min height for comment to equalize layout */}
+          <p className="font-roboto text-white text-accent text-sm px-2 min-h-[100px]">
             {comment}
           </p>
-          <h2 className="text-xl font-semibold text-gray-600 font-playFair text-center pt-6">
-            {name}
-          </h2>
-          <p className="font-roboto text-center text-accent">Client</p>
+
+          <div className="mt-6">
+            <h2 className="text-lg font-semibold text-white font-playFair">{name}</h2>
+            <p className="text-sm text-white text-accent font-roboto">Client</p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Client_Card;

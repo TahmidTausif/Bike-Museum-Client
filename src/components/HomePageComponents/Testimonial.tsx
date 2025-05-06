@@ -42,23 +42,17 @@ const clients: Client[] = [
 export default function Testimonial() {
   return (
     <>
-      <div className="">
-        <div className="my-16 py-8 z-10 relative">
-          <Title text="Happy Clients"></Title>
+      <div className="relative px-14">
+        <div className="mt-14  py-6 z-10 relative">
+          <Title text="Reviews"></Title>
+          
         </div>
         <Swiper
-          effect={'coverflow'}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={3}
           spaceBetween={50}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
+          loop={true}
           breakpoints={{
             320: {
               slidesPerView: 1,
@@ -87,15 +81,20 @@ export default function Testimonial() {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="absolute bottom-0 w-full flex justify-center pt-10 z-50">
+          <div className="swiper-pagination" />
+        </div>
       </div>
       <style>{`
+        
+
         .swiper-pagination-bullet {
-          background-color: #d1d5db;
+          background-color: white;
           opacity: 1;
         }
 
         .swiper-pagination-bullet-active {
-          background-color: #f97316;
+          background-color: #f472b6;
         }
       `}</style>
     </>

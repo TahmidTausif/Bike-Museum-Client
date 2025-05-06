@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ const Login = () => {
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -29,28 +30,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("auth_token");
-  //   if (token) {
-  //     const user = verifyToken(token) as TUser;
-  //     if (user) {
-  //       toast.info("You are already logged in.");
-  //       navigate("/"); 
-  //     }
-  //   }
-  // }, [navigate]);
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // const existingToken = localStorage.getItem("auth_token");
-    // if (existingToken) {
-    //   const existingUser = verifyToken(existingToken) as TUser;
-    //   if (existingUser) {
-    //     toast.warning("You are already logged in!", { duration: 2000 });
-    //     navigate("/"); 
-    //     return;
-    //   }
-    // }
-
     try {
       const result = (await login(data).unwrap()) as LoginResponse;
       const user = verifyToken(result.data.accessToken) as TUser;
@@ -58,12 +38,11 @@ const Login = () => {
       if (result?.success) {
         toast.success("Login successful!", { duration: 2000 });
       }
-      
 
       dispatch(setUser({ user, token: result.data.accessToken }));
       localStorage.setItem("auth_token", result.data.accessToken);
 
-      navigate("/"); 
+      navigate("/");
     } catch (err: unknown) {
       if (err instanceof Error) {
         toast.error(err.message || "Login failed", { duration: 2000 });
@@ -71,6 +50,16 @@ const Login = () => {
         toast.error("Login failed, wrong password or email", { duration: 2000 });
       }
     }
+  };
+
+  const fillAdminCredentials = () => {
+    setValue("email", "Admin1@gmail.com");
+    setValue("password", "Admin1@gmail.com");
+  };
+
+  const fillUserCredentials = () => {
+    setValue("email", "user1@gmail.com");
+    setValue("password", "password");
   };
 
   return (
@@ -144,13 +133,34 @@ const Login = () => {
               )}
             </div>
           </div>
+
+          {/* Autofill Buttons */}
+          <div className="flex flex-row gap-2">
+            <button
+              type="button"
+              onClick={fillAdminCredentials}
+              className="w-full px-4 py-2 text-sm font-medium text-white rounded-xl shadow-xl border border-white/20 backdrop-blur-md bg-white/5 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:bg-white/20  transition-colors duration-300"
+            >
+             Admin Credentials
+            </button>
+            <button
+              type="button"
+              onClick={fillUserCredentials}
+              className="w-full px-4 py-2 text-sm font-medium text-white rounded-xl shadow-xl border border-white/20  backdrop-blur-md bg-white/5 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:bg-white/20  transition-colors duration-300"
+            >
+              User Credentials
+            </button>
+          </div>
+
+          {/* Submit/Login Button */}
           <button
             type="submit"
-            className="w-full px-4 py-2 text-sm text-white font-medium border border-orange-500 rounded-lg bg-[linear-gradient(105deg,_#f97316_4.1%,_#ea580c_54.8%,_#c2410c_92.38%)] flex items-center justify-center"
+            className="w-full px-4 py-2 text-sm text-white font-medium rounded-full shadow-xl border border-white/20 backdrop-blur-md  bg-gradient-to-r from-purple-600 to-pink-600 hover:from-white/5 hover:to-white/5 transition-colors duration-300 flex items-center justify-center"
           >
             <p>Login</p>
           </button>
         </form>
+
         <p className="text-center text-gray-400 mt-6">
           New Here?{" "}
           <Link to={"/register"} className="text-pink-400 hover:underline">
