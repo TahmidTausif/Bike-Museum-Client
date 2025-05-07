@@ -6,8 +6,8 @@ A modern web application for showcasing various types of bikes. Built with React
 
 ## 🌐 Live Links
 
-- **Client**: [bike-museum-five.vercel.app](https://bike-museum-five.vercel.app/)
-- **Server**: [bike-museum-server-tan.vercel.app](https://bike-museum-server-tan.vercel.app/)
+- **Client**: [bike-museum-liart.vercel.app](https://bike-museum-liart.vercel.app/)
+- **Server**: [bike-museum-server-pied.vercel.app](https://bike-museum-server-pied.vercel.app/)
 
 ## 🧑‍💼 Admin Access
 
