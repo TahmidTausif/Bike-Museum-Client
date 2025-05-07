@@ -48,7 +48,8 @@ To log in as an admin, use the credentials below:
 ## 🛠️ Tech Stack
 
 ### Frontend:
-- Vite  
+- Vite
+- TypeScript 
 - React
 - Redux  
 - Tailwind CSS  
