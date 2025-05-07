@@ -11,7 +11,7 @@ A modern web application for showcasing various types of bikes. Built with **Rea
 
 ## 🌐 Live Links
 
-### my modified website
+### My modified website
 
 - **Client**: [https://bike-museum-liart.vercel.app](https://bike-museum-liart.vercel.app)  
 - **Server**: [https://bike-museum-server-pied.vercel.app](https://bike-museum-server-pied.vercel.app)
@@ -26,7 +26,7 @@ A modern web application for showcasing various types of bikes. Built with **Rea
 
 During the group project, I was responsible for developing and implementing several key sections of the app:
 
-- 🔹 **All Products Page** – Designed layout, integrated filtering logic, and made it fully responsive.
+- 🔹 **All Products Page** – Designed layout, pagination, integrated filtering logic, and made it fully responsive.
 - 🔹 **Product Details Page** – Created dynamic route view with complete product data display and user interaction.
 - 🔹 **Login & Registration Pages** – Built the forms with proper validation and integrated with backend auth.
 - 🔹 **Home Page Sections** – Developed hero section, featured collections, and additional promotional content areas.
@@ -49,7 +49,8 @@ To log in as an admin, use the credentials below:
 
 ### Frontend:
 - Vite  
-- React  
+- React
+- Redux  
 - Tailwind CSS  
 
 ### Backend:
