@@ -13,8 +13,8 @@ A modern web application for showcasing various types of bikes. Built with React
 
 To log in as an admin, use the credentials below:
 
-- **Email**: `Asiif2023@gmail.com`  
-- **Password**: `Asiif2023@gmail.com`
+- **Email**: `Admin1@gmail.com`  
+- **Password**: `Admin1@gmail.com`
 
 ## 🛠️ Tech Stack
 
