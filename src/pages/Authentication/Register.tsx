@@ -3,7 +3,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { RingLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 import axios from "axios";
 import { useRegisterMutation } from "../../redux/features/auth/authApi";
 
@@ -84,15 +84,15 @@ const Register = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen px-4">
-        <RingLoader size={80} color="#C2410C" />
+        <ScaleLoader  color="white" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1B1B31] via-[#2B1E36] to-[#1B1B31] px-4">
-      <div className="max-w-md w-full text-white rounded-lg shadow-lg p-8 md:p-12">
-        <h1 className="text-3xl font-bold text-center mb-6">Get Started</h1>
+    <div className="min-h-screen flex items-center justify-center py-14 bg-gradient-to-br from-gray-900 via-purple-950 to-violet-900 px-4">
+      <div className="max-w-md w-full backdrop-blur-md bg-white/10 rounded-xl shadow-xl border border-white/20 text-white  p-8 md:p-12">
+        <h1 className="text-3xl font-bold text-center mb-3">Get Started</h1>
         <p className="text-center text-gray-400 mb-8">
           Unlock access to a wide range of books with just a few details!
         </p>
@@ -104,13 +104,13 @@ const Register = () => {
                 {...register("name", { required: "Name is required" })}
                 type="text"
                 placeholder="Enter your name..."
-                className={`w-full px-4 py-2 text-white rounded-lg border ${errors.name
-                  ? "border-orange-500 focus:ring-orange-500"
+                className={`w-full px-4 py-2 text-white rounded-lg border border-white/20 ${errors.name
+                  ? "border-purple-600 focus:ring-purple-600"
                   : "border-gray-700 focus:ring-gray-500"
                 } focus:outline-none focus:ring-2`}
               />
               {typeof errors.name?.message === "string" && (
-                <p className="text-orange-500 text-sm mt-1">{errors.name.message}</p>
+                <p className="text-pink-400 text-sm mt-1">{errors.name.message}</p>
               )}
             </div>
 
@@ -126,13 +126,13 @@ const Register = () => {
                 })}
                 type="email"
                 placeholder="Enter your email..."
-                className={`w-full px-4 py-2 text-white rounded-lg border ${errors.email
-                  ? "border-orange-500 focus:ring-orange-500"
+                className={`w-full px-4 py-2 text-white rounded-lg border border-white/20 ${errors.email
+                  ? "border-purple-600 focus:ring-purple-600"
                   : "border-gray-700 focus:ring-gray-500"
                 } focus:outline-none focus:ring-2`}
               />
               {typeof errors.email?.message === "string" && (
-                <p className="text-orange-500 text-sm mt-1">{errors.email.message}</p>
+                <p className="text-pink-400 text-sm mt-1">{errors.email.message}</p>
               )}
             </div>
 
@@ -145,9 +145,9 @@ const Register = () => {
                   })}
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password..."
-                  className={`w-full px-4 py-2 text-white rounded-lg border ${errors.password
-                    ? "border-orange-500 focus:ring-orange-500"
-                    : "border-gray-700 focus:ring-gray-500"
+                  className={`w-full px-4 py-2 text-white rounded-lg border border-white/20 ${errors.password
+                    ? "border-purple-600 focus:ring-purple-600"
+                  : "border-gray-700 focus:ring-gray-500"
                   } focus:outline-none focus:ring-2`}
                 />
                 <button
@@ -159,7 +159,7 @@ const Register = () => {
                 </button>
               </div>
               {typeof errors.password?.message === "string" && (
-                <p className="text-orange-500 text-sm mt-1">{errors.password.message}</p>
+                <p className="text-pink-400 text-sm mt-1">{errors.password.message}</p>
               )}
             </div>
 
@@ -169,20 +169,20 @@ const Register = () => {
                 {...register("image", { required: "Image is required" })}
                 type="file"
                 accept="image/*"
-                className={`w-full px-4 py-2 text-white rounded-lg border ${errors.image
-                  ? "border-red-500 focus:ring-red-500"
-                  : "border-gray-700 focus:ring-blue-500"
+                className={`w-full px-4 py-2 text-white rounded-lg border border-white/20 ${errors.image
+                  ? "border-purple-600 focus:ring-purple-600"
+                  : "border-gray-700 focus:ring-gray-500"
                 } focus:outline-none focus:ring-2`}
               />
               {typeof errors.image?.message === "string" && (
-                <p className="text-orange-500 text-sm mt-1">{errors.image.message}</p>
+                <p className="text-pink-400 text-sm mt-1">{errors.image.message}</p>
               )}
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full px-4 py-2 text-sm text-white font-medium border border-orange-500 rounded-lg bg-[linear-gradient(105deg,_#f97316_4.1%,_#ea580c_54.8%,_#c2410c_92.38%)] flex items-center justify-center"
+            className="w-full px-4 py-2 text-sm text-white font-medium rounded-full shadow-xl border border-white/20 backdrop-blur-md  bg-gradient-to-r from-purple-600 to-pink-600 hover:from-white/5 hover:to-white/5 transition-colors duration-300 flex items-center justify-center"
           >
             Register
           </button>
@@ -190,7 +190,7 @@ const Register = () => {
 
         <p className="text-center text-gray-400 mt-6">
           Already have an account?{" "}
-          <Link to={"/login"} className="text-orange-500 hover:underline">
+          <Link to={"/login"} className="text-pink-400 hover:underline">
             Login
           </Link>
         </p>

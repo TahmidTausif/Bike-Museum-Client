@@ -4,6 +4,8 @@ import FeatureSection from "../components/HomePageComponents/FeaturedProducts";
 
 import ServiceSection from "../components/HomePageComponents/ServiceSection";
 import MarqueeSection from "../components/HomePageComponents/MarqueeSection";
+import AboutHighlight from "../components/HomePageComponents/AboutHighlight";
+import CategorySection from "../components/HomePageComponents/CaregorySection";
  // 
 
 
@@ -18,9 +20,10 @@ const Home = () => {
       {/* Marquee with bike images */}
       <MarqueeSection/>
 
-      {/* Special Services Section with larger text and image */}
-       <ServiceSection/>
-        <FeatureSection/>
+     <CategorySection/>
+      <ServiceSection/>
+      <FeatureSection/>
+      <AboutHighlight />
 
       {/* Testimonials */}
       <Testimonial />

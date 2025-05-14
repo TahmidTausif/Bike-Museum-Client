@@ -38,7 +38,7 @@ const Banner = () => {
         className="w-full h-full object-cover transition-all duration-1000"
       />
 
-      <div className="absolute inset-0 bg-black/50 md:bg-gradient-to-r md:from-gray-900/30 md:via-purple-950/20 md:to-transparent z-10" />
+      <div className="absolute inset-0 bg-black/50 md:bg-gradient-to-r md:from-gray-900/40 md:via-purple-950/30 md:to-transparent z-10" />
 
       {/* Left Arrow */}
       <button
@@ -62,8 +62,8 @@ const Banner = () => {
 
       {/* Text Overlay (optional) */}
       <div className="absolute inset-0 flex z-20 items-center justify-center">
-        <div className="justify-center item-center flex flex-col md:flex-row px-4">
-          <div className='md:w-1/2 pt-4 text-left justify-center md:justify-start'>
+        <div className="justify-center item-center flex flex-col-reverse md:flex-row px-4">
+          <div className='md:w-1/2 px-14 pt-4 text-center md:text-left justify-center md:justify-start'>
             <p className="text-white/90 text-lg md:text-xl mb-6 drop-shadow-md">
               Explore a legendary collection of classic and modern bikes.
             </p>
@@ -73,8 +73,8 @@ const Banner = () => {
               </button>
             </Link>
           </div>
-          <div className='md:w-1/2 text-right'>
-            <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-lg">
+          <div className='md:w-1/2 px-14 text-center md:text-right'>
+            <h1 className="text-white text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-lg">
               Rediscover <br/> the Ride
             </h1>
           </div>

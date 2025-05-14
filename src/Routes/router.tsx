@@ -16,6 +16,7 @@ import PaymentFail from "../pages/OrderForm/PaymentFail";
 import PaymentCancel from "../pages/OrderForm/PaymentCancel";
 import PrivateRoute from "./PrivateRoute";
 import CreateProductForm from "../pages/admin/CreateProductForm";
+import ContactPage from "../pages/ContactPage";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
       },
       {
         path: "/products/orderForm/:id",

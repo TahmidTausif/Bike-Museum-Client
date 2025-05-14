@@ -57,10 +57,10 @@ const Login = () => {
     setValue("password", "Admin1@gmail.com");
   };
 
-  const fillUserCredentials = () => {
-    setValue("email", "user1@gmail.com");
-    setValue("password", "password");
-  };
+  // const fillUserCredentials = () => {
+  //   setValue("email", "user1@gmail.com");
+  //   setValue("password", "password");
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-950 to-violet-900 px-4">
@@ -143,13 +143,13 @@ const Login = () => {
             >
              Admin Credentials
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={fillUserCredentials}
               className="w-full px-4 py-2 text-sm font-medium text-white rounded-xl shadow-xl border border-white/20  backdrop-blur-md bg-white/5 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:bg-white/20  transition-colors duration-300"
             >
               User Credentials
-            </button>
+            </button> */}
           </div>
 
           {/* Submit/Login Button */}

@@ -20,8 +20,9 @@ const FeatureSection = () => {
   }, [data]);
 
   return (
-    <section className="px-14 py-20">
-      <h2 className="text-5xl pb-10 text-white font-bold mb-6 text-center">Featured Products</h2>
+    <section className="p-14 my-10">
+      <h2 className="text-4xl  text-white font-bold mb-3 text-center">Featured Products</h2>
+      <h3 className='text-white pb-10 text-center tracking-wider font-playFair text-lg '>Best of our Beasts</h3>
 
       {/* Check for loading or error */}
       {isLoading ? (
@@ -31,7 +32,7 @@ const FeatureSection = () => {
       ) : error ? (
         <div className="text-red-500 text-center">Error fetching products.</div>
       ) : (
-        <div className="grid md:grid-cols-5 gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
           {featuredProducts.length > 0 ? (
             featuredProducts.map((product) => (
               <ProductCard key={product._id} product={product} />

@@ -5,8 +5,8 @@ import { useAppSelector } from "../../redux/hooks";
 import { useGetUserByEmailQuery } from "../../redux/features/auth/authApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
-import { useGetSingleProductQuery } from "../../redux/features/products/productApi"; 
-import { RingLoader } from "react-spinners";
+import { useGetSingleProductQuery } from "../../redux/features/products/productApi";
+import { ScaleLoader } from "react-spinners";
 
 const OrderForm = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const OrderForm = () => {
     data: productData,
     isLoading: productLoading,
     error: productError,
-  } = useGetSingleProductQuery(id as string); 
+  } = useGetSingleProductQuery(id as string);
 
   const {
     data: user,
@@ -27,7 +27,7 @@ const OrderForm = () => {
   } = useGetUserByEmailQuery(currentUser?.email ?? skipToken);
 
   const inputClasses =
-    "border p-2 w-full rounded-xl text-center border-one placeholder-opacity-70";
+    "border border-white/30 text-white p-2 w-full rounded-xl text-center border-one placeholder-opacity-70";
 
   interface IOrderData {
     user?: string;
@@ -64,7 +64,7 @@ const OrderForm = () => {
     data.transactionId = Number(Date.now());
     data.product = id as string;
     data.user = user.data._id;
-    data.totalPrice = productData?.data?.price || 0; 
+    data.totalPrice = productData?.data?.price || 0;
 
     console.log("Submitting Order:", data);
 
@@ -88,88 +88,90 @@ const OrderForm = () => {
   };
 
   return (
-    <div className="w-10/12 mx-auto my-10 bg-four py-10 text-white">
-      <div className="md:w-2/5 mx-auto">
-        {/* Show product info */}
-        {productLoading ? (
-          <RingLoader size={80} color="#C2410C" />
-        ) : productError ? (
-          <p className="text-center text-red-500">Failed to load product.</p>
-        ) : (
-          <div className="mb-6 p-4 border rounded-xl bg-one text-white shadow-md text-center">
-          <img
-            src={productData?.data?.photo}
-            alt={productData?.data?.name}
-            className="w-32 h-32 object-cover mx-auto rounded-md mb-3"
-          />
-          
-          <h2 className="text-xl font-bold mb-1">{productData?.data?.name}</h2>
-          <p><strong>Category:</strong> {productData?.data?.category}</p>
-          <p><strong>Price:</strong> ৳{productData?.data?.price}</p>
+    <div className="w-11/12 mx-auto my-10 bg-four py-10 text-white">
+      <div className="flex flex-col md:flex-row gap-10 items-start justify-center">
+        {/* Left: Product Info */}
+        <div className="md:w-1/2 w-full px-4">
+          {productLoading ? (
+            <div className="flex justify-center items-center h-48">
+              <ScaleLoader color="white" />
+            </div>
+          ) : productError ? (
+            <p className="text-center text-white">Failed to load product.</p>
+          ) : (
+            <div className=" border border-white/30 rounded-xl text-white shadow-md">
+              <img
+                src={productData?.data?.photo}
+                alt={productData?.data?.name}
+                className="w-full h-64 object-cover rounded-t-xl mb-4"
+              />
+              <div className="p-6">
+                <h2 className="text-2xl font-bold mb-2">{productData?.data?.name}</h2>
+                <p className="mb-1"><strong>Category:</strong> {productData?.data?.category}</p>
+                <p><strong>Price:</strong> ৳{productData?.data?.price}</p>
+              </div>
+            </div>
+          )}
         </div>
-        )}
 
-        <h1 className="text-2xl font-bold mb-6 text-center">Order Form</h1>
+        {/* Right: Order Form */}
+        <div className="md:w-1/2 w-full px-4">
+          <h1 className="text-3xl font-bold mb-6 text-center">Order Form</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Email */}
+            <div>
+              <h2 className="text-lg mb-2">Your Email</h2>
+              <input
+                type="text"
+                {...register("email", { required: "Email is required" })}
+                placeholder="example@gmail.com"
+                className={inputClasses}
+              />
+              {errors.email && <span className="text-pink-400">{errors.email.message}</span>}
+            </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-          {/* Email */}
-          <div className="w-full">
-            <h2 className="text-lg mb-2 text-center">Your Email</h2>
-            <input
-              type="text"
-              {...register("email", { required: "Email is required" })}
-              placeholder="example@gmail.com"
-              className={inputClasses}
-            />
-            {errors.email && (
-              <span className="text-red-600">{errors.email.message}</span>
-            )}
-          </div>
+            {/* Address */}
+            <div>
+              <h2 className="text-lg mb-2">Address</h2>
+              <input
+                type="text"
+                {...register("address", { required: "Address is required" })}
+                placeholder="Street, Village, District"
+                className={inputClasses}
+              />
+              {errors.address && <span className="text-pink-400">{errors.address.message}</span>}
+            </div>
 
-          {/* Address */}
-          <div className="w-full">
-            <h2 className="text-lg mb-2 text-center">Address</h2>
-            <input
-              type="text"
-              {...register("address", { required: "Address is required" })}
-              placeholder="Street, Village, District"
-              className={inputClasses}
-            />
-            {errors.address && (
-              <span className="text-red-600">{errors.address.message}</span>
-            )}
-          </div>
+            {/* Phone */}
+            <div>
+              <h2 className="text-lg mb-2">Phone Number</h2>
+              <input
+                type="number"
+                {...register("phone", {
+                  required: "Phone number is required",
+                  valueAsNumber: true,
+                })}
+                placeholder="01XXXXXXXXX"
+                className={inputClasses}
+              />
+              {errors.phone && <span className="text-pink-400">{errors.phone.message}</span>}
+            </div>
 
-          {/* Phone */}
-          <div className="w-full">
-            <h2 className="text-lg mb-2 text-center">Phone Number</h2>
-            <input
-              type="number"
-              {...register("phone", {
-                required: "Phone number is required",
-                valueAsNumber: true,
-              })}
-              placeholder="017XXXXXXXX"
-              className={inputClasses}
-            />
-            {errors.phone && (
-              <span className="text-red-600">{errors.phone.message}</span>
-            )}
-          </div>
-
-          {/* Submit */}
-          <div className="w-1/2 mx-auto pt-4">
-            <button
-              type="submit"
-              className="hover:cursor-pointer hover:bg-black hover:text-white transition-all w-full bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md duration-300"
-            >
-              Confirm Order
-            </button>
-          </div>
-        </form>
+            {/* Submit */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full px-6 py-3 text-sm text-white font-medium rounded-full shadow-xl border border-white/20 backdrop-blur-md bg-gradient-to-r from-purple-600 to-pink-600 hover:from-white/5 hover:to-white/5 transition-colors duration-300"
+              >
+                Confirm Order
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
+
 };
 
 export default OrderForm;

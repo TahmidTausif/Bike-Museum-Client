@@ -43,8 +43,9 @@ export default function Testimonial() {
   return (
     <>
       <div className="relative px-14">
-        <div className="mt-14  py-6 z-10 relative">
+        <div className="mt-14  z-10 relative">
           <Title text="Reviews"></Title>
+          <h3 className='text-white text-center tracking-wider font-playFair text-lg '>What our users say</h3>
           
         </div>
         <Swiper

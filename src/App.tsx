@@ -7,7 +7,8 @@ import { Toaster } from 'sonner';
 import { useAppDispatch } from './redux/hooks';
 import { verifyToken } from './redux/utils/verifyToken';
 import { setUser, TUser } from './redux/features/auth/authSlice';
-import {  ScaleLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
+import ScrollTop from './components/HomePageComponents/ScrollTop';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -28,20 +29,23 @@ function App() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen  px-4">
-        <ScaleLoader/>
+        <ScaleLoader />
       </div>
     );
   }
 
   return (
     <>
-      <div>
-        <div className="bg-gradient-to-br from-gray-900 via-purple-950 to-violet-900 fixed top-0 left-0 w-full min-h-screen -z-10"></div>
+      <div className=" bg-gradient-to-br from-gray-900 via-purple-950 to-violet-900">
 
-        <div>
+
+        <div className='w-full'>
           <Navbar />
+          <ScrollTop />
           <Toaster />
-          <Outlet />
+          <main className="w-full overflow-x-hidden">
+            <Outlet />
+          </main>
           <Footer />
         </div>
       </div>

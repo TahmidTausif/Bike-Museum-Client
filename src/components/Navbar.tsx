@@ -70,6 +70,7 @@ const Navbar = () => {
           <li><Link to="/" className={`${isActiveLink('/')}`}>Home</Link></li>
           <li><Link to="/products" className={`${isActiveLink('/products')}`}>Collection</Link></li>
           <li><Link to="/about-us" className={`${isActiveLink('/about-us')}`}>About Us</Link></li>
+          <li><Link to="/contact" className={`${isActiveLink('/contact')}`}>Contact</Link></li>
         </ul>
 
         {/* User Avatar/Login - Desktop */}
@@ -84,7 +85,7 @@ const Navbar = () => {
                 <img
                   src={user?.data?.imageUrl || '/default.jpg'}
                   alt="User Avatar"
-                  className="w-[40px] h-[40px] rounded-full object-cover"
+                  className="w-10 h-10 rounded-full object-cover"
                 />
               </button>
               {isDropdownOpen && (
@@ -126,6 +127,7 @@ const Navbar = () => {
             <li><Link to="/" className={`${isActiveLink('/')}`} onClick={toggleMenu}>Home</Link></li>
             <li><Link to="/products" className={`${isActiveLink('/products')}`} onClick={toggleMenu}>Collections</Link></li>
             <li><Link to="/about-us" className={`${isActiveLink('/about-us')}`} onClick={toggleMenu}>About Us</Link></li>
+            <li><Link to="/contact" className={`${isActiveLink('/contact')}`} onClick={toggleMenu}>Contact</Link></li>
           </ul>
 
           <div className="text-right mt-4">

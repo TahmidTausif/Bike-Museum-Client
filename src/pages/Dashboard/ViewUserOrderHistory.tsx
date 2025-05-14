@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
-import { RingLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 import { toast } from "sonner";
 import {
   useDeleteOrderMutation,
@@ -35,7 +35,7 @@ const ViewUserOrderHistory: React.FC = () => {
   if (userLoading || ordersLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen px-4">
-        <RingLoader size={80} color="#C2410C" />
+        <ScaleLoader  color="white" />
       </div>
     );
   }

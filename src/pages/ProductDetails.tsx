@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useGetSingleProductQuery } from '../redux/features/products/productApi';
-import { RingLoader } from 'react-spinners';
+import {  ScaleLoader } from 'react-spinners';
 
 interface ProductError {
   data: {
@@ -27,7 +27,7 @@ const ProductDetails = () => {
   // Show loading state
   if (isLoading) return (
     <div className="flex items-center justify-center min-h-screen px-4">
-      <RingLoader size={80} color="#C2410C" />
+      <ScaleLoader  color="white" />
     </div>
   );
 

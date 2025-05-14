@@ -10,7 +10,7 @@ interface ClientCardProps {
 const Client_Card: React.FC<ClientCardProps> = ({ img, comment, name }) => {
   return (
     <div className="mt-20 mb-8 h-full">
-      <div className="relative mx-auto backdrop-blur-md bg-white/10 rounded-xl shadow-xl border border-white/20 px-6 pt-16 pb-8 h-full flex flex-col justify-between">
+      <div className="relative mx-auto backdrop-blur-md bg-black/10 rounded-xl shadow-xl border border-white/20 px-6 pt-16 pb-8 h-full flex flex-col justify-between">
         {/* Quote Icon */}
         <div className="absolute top-5 left-5 text-primary text-5xl opacity-40">
           <FaQuoteLeft className="text-white" />

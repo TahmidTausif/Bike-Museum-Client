@@ -3,10 +3,10 @@ import explore from "../../assets/images/explore.png";
 const ServiceSection = () => {
     return (
         
-            <div className="backdrop-blur-xl bg-white/5 my-20">
-                <div className="flex flex-col-reverse lg:flex-row items-center justify-between px-14 pb-20 md:py-26 gap-16 container mx-auto ">
+            <div className="backdrop-blur-xl bg-white/5 w-full mx-auto ">
+                <div className="flex flex-col-reverse md:flex-row items-center justify-between px-14 pb-20 md:py-26 gap-16 container mx-auto ">
                     {/* Left Side - Large Text */}
-                    <div className="lg:w-1/2 text-center pr-10 lg:text-left">
+                    <div className="md:w-1/2 text-center md:pr-10 md:text-left">
                         <h4 className="text-xl md:text-2xl font-medium text-white mb-4 md:mb-5 lg:mb-6 capitalize">
                             Explore New Bikes
                         </h4>
@@ -26,11 +26,11 @@ const ServiceSection = () => {
                     </div>
 
                     {/* Right Side - Large Image */}
-                    <div className="lg:w-1/2 w-full flex justify-center">
+                    <div className="md:w-1/2 w-full pt-10 flex justify-center">
                         <img
                             src={explore}
                             alt="Special Bike Services"
-                            className="md:rounded-2xl shadow-xl shadow-white/5 w-full max-w-4xl"  // Increased max width to make the image larger
+                            className="rounded-2xl shadow-xl shadow-white/5 w-full"  
                         />
                     </div>
                 </div>

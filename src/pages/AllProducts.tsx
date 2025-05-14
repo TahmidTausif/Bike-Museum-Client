@@ -1,10 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useGetAllProductsQuery } from '../redux/features/products/productApi';
 import { TProduct } from '../redux/types/product';
-import { RingLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 
 const AllProducts = () => {
+
+
   const [filters, setFilters] = useState({
     searchTerm: '',
     category: '',
@@ -14,6 +16,16 @@ const AllProducts = () => {
   });
 
   const [appliedFilters, setAppliedFilters] = useState(filters);
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const categoryFromURL = query.get('category');
+    if (categoryFromURL) {
+      setFilters(prev => ({ ...prev, category: categoryFromURL }));
+      setAppliedFilters(prev => ({ ...prev, category: categoryFromURL }));
+    }
+  }, [location.search]);
+
   const [page, setPage] = useState(1);
   const limit = 6;
 
@@ -70,16 +82,16 @@ const AllProducts = () => {
     <div className="container  mx-auto px-14 py-20 overflow-y-auto">
       <h2 className="text-4xl text-white font-bold mb-8">All Products</h2>
 
-      <div className="flex gap-8">
+      <div className="flex flex-col md:flex-row  gap-8">
         {/* Sidebar Filter Box */}
         <form
           onSubmit={e => {
             e.preventDefault();
             applyFilters();
           }}
-          className="w-full md:w-1/4 text-white backdrop-blur-md bg-white/10 rounded-xl shadow-xl border border-white/20 p-4 h-fit space-y-4"
+          className="w-full md:w-1/4 text-white backdrop-blur-md bg-white/10 rounded-xl shadow-xl border border-white/20 p-4 md:py-8 h-fit space-y-4"
         >
-          <h3 className="text-xl font-semibold text-white">Filters</h3>
+          <h3 className="text-2xl font-semibold text-white">Filters</h3>
 
           {/* Search Input */}
           <div>
@@ -91,97 +103,72 @@ const AllProducts = () => {
             />
           </div>
 
-          {/* Category Options */}
-          <div>
-            <label className="block font-medium mb-3">Category</label>
-            <div className="flex flex-wrap mb-2 gap-2">
-              {['', 'Mountain', 'Road', 'Hybrid', 'Electric'].map(cat => (
-                <button
-                  key={cat}
-                  type="button"
-                  className={`btn btn-sm px-2.5 py-1 rounded-full shadow-xl border border-white/20 ${filters.category === cat
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-pink-700 text-white'
-                    : 'text-white backdrop-blur-md bg-white/10 '
-                    }`}
-                  onClick={() => setFilters({ ...filters, category: cat })}
-                >
-                  {cat || 'All'}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Collapsible Category Select */}
+          <details className="mb-4">
+            <summary className="cursor-pointer font-medium mb-1">Category</summary>
+            <select
+              className="select select-bordered w-full bg-white/10 text-white border-white/20 p-1 rounded-md"
+              value={filters.category}
+              onChange={e => setFilters({ ...filters, category: e.target.value })}
+            >
+              <option value="" className='bg-gray-500'>All</option>
+              <option value="Mountain" className='bg-gray-500'>Mountain</option>
+              <option value="Road" className='bg-gray-500'>Road</option>
+              <option value="Hybrid" className='bg-gray-500'>Hybrid</option>
+              <option value="Electric" className='bg-gray-500'>Electric</option>
+            </select>
+          </details>
 
-          {/* Brand Options */}
-          <div>
-            <label className="block font-medium mb-3">Brand</label>
-            <div className="flex flex-wrap mb-2 gap-2">
-              {[
-                '',
-                'Trek',
-                'Specialized',
-                'Cannondale',
-                'Rad Power Bikes',
-                'Aventon',
-                'Turboant',
-                'Juiced Bikes',
-                'Yamaha',
-                'Hero',
-                'Suzuki',
-              ].map(brand => (
-                <button
-                  key={brand}
-                  type="button"
-                  className={`btn btn-sm px-2.5 py-1 rounded-full shadow-xl border border-white/20 ${filters.brand === brand
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-pink-700 text-white'
-                    : 'text-white backdrop-blur-md bg-white/10'
-                    }`}
-                  onClick={() => setFilters({ ...filters, brand })}
-                >
-                  {brand || 'All'}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Collapsible Brand Select */}
+          <details className="mb-4">
+            <summary className="cursor-pointer font-medium mb-1">Brand</summary>
+            <select
+              className="select select-bordered w-full bg-white/10 text-white border-white/20 p-1 rounded-md"
+              value={filters.brand}
+              onChange={e => setFilters({ ...filters, brand: e.target.value })}
+            >
+              <option value="" className='bg-gray-500'>All</option>
+              <option value="Trek" className='bg-gray-500'>Trek</option>
+              <option value="Specialized" className='bg-gray-500'>Specialized</option>
+              <option value="Cannondale" className='bg-gray-500'>Cannondale</option>
+              <option value="Rad Power Bikes" className='bg-gray-500'>Rad Power Bikes</option>
+              <option value="Aventon" className='bg-gray-500'>Aventon</option>
+              <option value="Turboant" className='bg-gray-500'>Turboant</option>
+              <option value="Juiced Bikes" className='bg-gray-500'>Juiced Bikes</option>
+              <option value="Yamaha" className='bg-gray-500'>Yamaha</option>
+              <option value="Hero" className='bg-gray-500'>Hero</option>
+              <option value="Suzuki" className='bg-gray-500'>Suzuki</option>
+            </select>
+          </details>
 
-          {/* Sort By Options */}
-          <div>
-            <label className="block font-medium mb-3">Sort By</label>
-            <div className="flex flex-wrap mb-2 gap-2">
-              {['', 'price', 'name', 'category'].map(sort => (
-                <button
-                  key={sort}
-                  type="button"
-                  className={`btn btn-sm px-2.5 py-1 rounded-full shadow-xl border border-white/20 ${filters.sortBy === sort
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-pink-700 text-white'
-                    : 'text-white backdrop-blur-md bg-white/10 '
-                    }`}
-                  onClick={() => setFilters({ ...filters, sortBy: sort as keyof TProduct })}
-                >
-                  {sort || 'None'}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Collapsible Sort By Select */}
+          <details className="mb-4">
+            <summary className="cursor-pointer font-medium mb-1">Sort By</summary>
+            <select
+              className="select select-bordered w-full bg-white/10 text-white border-white/20 p-1 rounded-md"
+              value={filters.sortBy}
+              onChange={e => setFilters({ ...filters, sortBy: e.target.value as keyof TProduct })}
+            >
+              <option value="" className='bg-gray-500'>None</option>
+              <option value="price" className='bg-gray-500'>Price</option>
+              <option value="name" className='bg-gray-500'>Name</option>
+              <option value="category" className='bg-gray-500'>Category</option>
+            </select>
+          </details>
 
-          {/* Sort Order Options */}
-          <div>
-            <label className="block font-medium mb-3">Sort Order</label>
-            <div className="flex mb-2 gap-2">
-              {['asc', 'desc'].map(order => (
-                <button
-                  key={order}
-                  type="button"
-                  className={`btn btn-sm px-2.5 py-1.5 rounded-full shadow-xl border border-white/20 ${filters.sortOrder === order
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-pink-700 text-white'
-                    : 'text-white backdrop-blur-md bg-white/10 '
-                    }`}
-                  onClick={() => setFilters({ ...filters, sortOrder: order as 'asc' | 'desc' })}
-                >
-                  {order === 'asc' ? 'Lowest' : 'Highest'}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Collapsible Sort Order Select */}
+          <details className="mb-4">
+            <summary className="cursor-pointer font-medium mb-1">Sort Order</summary>
+            <select
+              className="select select-bordered w-full p-1 rounded-md bg-white/10 text-white border-white/20"
+              value={filters.sortOrder}
+              onChange={e => setFilters({ ...filters, sortOrder: e.target.value as 'asc' | 'desc' })}
+            >
+              <option value="asc" className='bg-gray-500'>Lowest</option>
+              <option value="desc" className='bg-gray-500'>Highest</option>
+            </select>
+          </details>
+
 
           {/* Apply and Clear Buttons */}
           <div className="flex border-t border-white/20 pt-4 gap-2">
@@ -217,13 +204,13 @@ const AllProducts = () => {
         <div className="flex-1">
           {isLoading ? (
             <div className="flex items-center justify-center min-h-screen">
-              <RingLoader size={80} color="#C2410C" />
+              <ScaleLoader color="white" />
             </div>
           ) : error ? (
             <div className="text-white">Error fetching products.</div>
           ) : (
             <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 pb-4 gap-10">
                 {paginatedProducts.length === 0 ? (
                   <div className="text-center text-white col-span-full">No products found.</div>
                 ) : (
@@ -234,7 +221,7 @@ const AllProducts = () => {
               </div>
 
               {/* Pagination */}
-              <div className="flex justify-center mt-6">
+              <div className="flex justify-center mt-8">
                 <button
                   className={`btn btn-primary px-4 py-1.5 rounded-full shadow-xl border border-white/20 text-white backdrop-blur-md bg-white/10 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-colors duration-300 mx-2 ${page === 1 ? 'btn-disabled' : 'btn-outline'}`}
                   onClick={() => setPage(page - 1)}
